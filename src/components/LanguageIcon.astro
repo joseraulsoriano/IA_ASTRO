@@ -1,0 +1,27 @@
+---
+const { language } = Astro.props;
+
+const icons = {
+  javascript: "/icons/javascript.svg",
+  python: "/icons/python.svg",
+  swift: "/icons/swift.svg",
+  typescript: "/icons/typescript.svg",
+  html: "/icons/html.svg",
+  css: "/icons/css.svg",
+  astro: "/icons/astro.svg",
+  react: "/icons/react.svg",
+  vue: "/icons/vue.svg",
+  angular: "/icons/angular.svg",
+  php: "/icons/php.svg",
+  cplus: "/icons/cplus.svg",
+  bootstrap: "/icons/bootstrap.svg",
+
+  // Agrega más lenguajes e íconos según sea necesario
+};
+
+const iconSrc = language
+  ? icons[language.toLowerCase()]
+  : "/icons/default-icon.svg";
+---
+
+<img src={iconSrc} alt={language || "default"} width="24" height="24" />
