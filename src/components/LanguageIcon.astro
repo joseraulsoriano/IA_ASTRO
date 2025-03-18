@@ -1,28 +1,39 @@
 ---
-const { language } = Astro.props;
+const { languages } = Astro.props;
 
 const icons = {
-  javascript: "/icons/javascript.svg",
-  python: "/icons/python.svg",
-  swift: "/icons/swift.svg",
-  typescript: "/icons/typescript.svg",
-  html: "/icons/html.svg",
-  css: "/icons/css.svg",
-  astro: "/icons/astro.svg",
-  react: "/icons/react.svg",
-  vue: "/icons/vue.svg",
-  angular: "/icons/angular.svg",
-  php: "/icons/php.svg",
-  cplus: "/icons/cplus.svg",
-  bootstrap: "/icons/bootstrap.svg",
-  markdown: "/icons/markdown.svg",
-
+  javascript: "/public/icons/javascript.svg",
+  python: "/public/icons/python.svg",
+  swift: "/public/icons/swift.svg",
+  typescript: "/public/icons/typescript.svg",
+  html: "/public/icons/html.svg",
+  css: "/public/icons/css.svg",
+  astro: "/public/icons/astro.svg",
+  react: "/public/icons/react.svg",
+  angular: "/public/icons/angular.svg",
+  php: "/public/icons/php.svg",
+  cplus: "/public/icons/cplus.svg",
+  bootstrap: "/public/icons/bootstrap.svg",
+  markdown: "/public/icons/markdown.svg",
   // Agrega más lenguajes e íconos según sea necesario
 };
 
-const iconSrc = language
-  ? icons[language.toLowerCase()]
-  : "/icons/default-icon.svg";
+const iconSrcs = languages
+  ? languages.map(
+      (lang) => icons[lang.toLowerCase()] || "/icons/default-icon.svg"
+    )
+  : ["/icons/default-icon.svg"];
 ---
 
-<img src={iconSrc} alt={language || "default"} width="24" height="24" />
+{
+  iconSrcs.map((iconSrc, index) => (
+    <img
+      src={iconSrc}
+      alt={languages ? languages.join(", ") : "default"}
+      width="24"
+      height="24"
+      padding="5em"
+      key={index}
+    />
+  ))
+}

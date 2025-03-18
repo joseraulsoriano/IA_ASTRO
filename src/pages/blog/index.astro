@@ -103,7 +103,7 @@ const posts = (await getCollection("blog")).sort(
                   />
                   <h4 class="title">
                     {post.data.title}
-                    <LanguageIcon language={post.data.language} />
+                    <LanguageIcon languages={post.data.languages} />
                   </h4>
                   <p class="date">
                     <FormattedDate date={post.data.pubDate} />
