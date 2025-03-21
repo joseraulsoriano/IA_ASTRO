@@ -1,7 +1,7 @@
 ---
 const { languages } = Astro.props;
 
-const icons = {
+const icons: { [key: string]: string } = {
   javascript: "/icons/javascript.svg",
   python: "/icons/python.svg",
   swift: "/icons/swift.svg",
@@ -20,20 +20,19 @@ const icons = {
 
 const iconSrcs = languages
   ? languages.map(
-      (lang) => icons[lang.toLowerCase()] || "/icons/default-icon.svg"
+      (lang: string) => icons[lang.toLowerCase()] || "/icons/default-icon.svg"
     )
   : ["/icons/default-icon.svg"];
 ---
 
 {
-  iconSrcs.map((iconSrc, index) => (
+  iconSrcs.map((iconSrc: string, index: number) => (
     <img
       src={iconSrc}
       alt={languages ? languages.join(", ") : "default"}
       width="24"
       height="24"
       class="icon"
-      key={index}
     />
   ))
 }
